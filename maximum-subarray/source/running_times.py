@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
             results[algorithm][test_case] = result
 
-    with open(os.path.dirname(__file__) + '/../results/report.results', 'w') as f:
+    with open(os.path.dirname(__file__) + '/../results/running_times.results', 'w') as f:
         f.write(f'{"": ^20}{"Algorithm 1": ^20}{"Algorithm 2": ^20}{"Algorithm 3": ^20}{"Algorithm 4": ^20}\n\n')
 
         for test_case in test_cases:
