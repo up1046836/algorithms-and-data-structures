@@ -5,40 +5,39 @@ from test_case import TestCase
 RUNNING_TIME = 1
 
 def find(algorithm):
-    def seek(algorithm, current, previous):
-        if current == previous:
-            print()
+    def seek(algorithm, start, end):
+        middle = (start + end)//2
+        if start == middle:
+            print(flush=True)
             return
-        result = algorithm(TestCase(current), timeout=RUNNING_TIME*10)
-        middle = (current + previous)//2
-        print(f'{algorithm_name}: n = {current} in {result.running_time}s', end='\r')
-        sleep(1)
-        if RUNNING_TIME <= result.running_time and result.running_time <= RUNNING_TIME + 0.15:
-            print()
+        result = algorithm(TestCase(middle), timeout=RUNNING_TIME*10)
+        print(f'{algorithm_name}: n = {middle} in {result.running_time}s', end='\r', flush=True)
+        if RUNNING_TIME <= result.running_time and result.running_time <= RUNNING_TIME + 0.05:
+            print(flush=True)
             return
         elif result.running_time > RUNNING_TIME:
-            seek(algorithm, middle, current)
+            seek(algorithm, start, middle)
         else: 
-            seek(algorithm, middle, previous)
+            seek(algorithm, middle, end)
 
     algorithm_name = algorithm.__name__.replace("_", ' ').capitalize()
-    current = previous = 1
+    start = end = 1
 
     while True:
-        test_case = TestCase(current)
+        test_case = TestCase(end)
         result = algorithm(test_case, timeout=RUNNING_TIME*10)
 
-        print(f'{algorithm_name}: n = {current} in {result.running_time}s', end='\r')
-        if RUNNING_TIME <= result.running_time and result.running_time <= RUNNING_TIME + 0.15:
-            print()
+        print(f'{algorithm_name}: n = {end} in {result.running_time}s', end='\r', flush=True)
+        if RUNNING_TIME <= result.running_time and result.running_time <= RUNNING_TIME + 0.05:
+            print(flush=True)
             return
         elif result.running_time > RUNNING_TIME:
             break
 
-        previous = current
-        current *= 2
+        start = end
+        end = end * 2
 
-    seek(algorithm, current, previous)
+    seek(algorithm, start, end)
 
 
 print('\033[?25l')
