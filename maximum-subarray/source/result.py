@@ -22,6 +22,12 @@ class Result:
                         f'{self.max_sum} ({self.start}, {self.end}) in {self.running_time:.4f}s '
                 )
 
+            else:
+                return (f'[NA] '
+                        f'{self.algorithm.__name__.capitalize().replace("_", " ")} run {self.test_case}: '
+                        f'{self.max_sum} ({self.start}, {self.end}) in {self.running_time:.4f}s '
+                )
+
         else:
             return (f'[\033[93mTM\033[0m] ' 
                     f'{self.algorithm.__name__.capitalize().replace("_", " ")} run {self.test_case}: '

@@ -14,7 +14,7 @@ def algorithm_1(test_case, timeout):
         for j in range(i, len(lst)):
             current_sum = 0
             for k in range(i, j + 1):
-                if process_time() - start_time >= timeout: return Result(algorithm_1, test_case, timeout=timeout)
+                if process_time() - start_time > timeout: return Result(algorithm_1, test_case, timeout=timeout)
                 current_sum += lst[k]
             if current_sum >= max_sum:
                 max_sum = current_sum
@@ -35,7 +35,7 @@ def algorithm_2(test_case, timeout):
     for i in range(len(lst)):
         current_sum = 0
         for j in range(i, len(lst)):
-            if process_time() - start_time >= timeout: return Result(algorithm_2, test_case, timeout=timeout)
+            if process_time() - start_time > timeout: return Result(algorithm_2, test_case, timeout=timeout)
             current_sum += lst[j]
             if current_sum >= max_sum:
                 max_sum = current_sum
@@ -70,7 +70,7 @@ def algorithm_3(test_case, timeout):
         middle_left = Res(float('-inf'), None, middle_index)
         middle_right = Res(float('-inf'), middle_index + 1, None)
 
-        if process_time() - start_time >= timeout: return None
+        if process_time() - start_time > timeout: return None
 
         current_sum = 0
         for i in range(middle_index, start - 1, -1):
@@ -107,7 +107,7 @@ def algorithm_4(test_case, timeout):
     current_start = 0
 
     for i in range(len(lst)):
-        if process_time() - start_time >= timeout: return Result(algorithm_4, test_case, timeout=timeout)
+        if process_time() - start_time > timeout: return Result(algorithm_4, test_case, timeout=timeout)
         if lst[i] + max_sums[i] < lst[i]:
             current_start = i
             max_sums.append(lst[i])
