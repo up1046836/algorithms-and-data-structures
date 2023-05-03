@@ -1,4 +1,3 @@
-from generate import generate_codes
 from hash_table import HashTable
 from code import Code
 from pair import Pair
@@ -36,7 +35,8 @@ def find_candidates(code):
 
     return candidates
 
-def find_pairs(codes, hash_table):
+def find_pairs(codes):
+    hash_table = HashTable(codes)
     pairs = []
     for code in codes:
         candidates = find_candidates(code.code)
@@ -54,8 +54,7 @@ if __name__ == "__main__":
     with open(sys.argv[1]) as f:
         codes = [Code(code) for code in f.read().splitlines()]
     start = time.process_time()
-    hash_table = HashTable(codes)
-    pairs = find_pairs(codes, hash_table)
+    pairs = find_pairs(codes)
     end = time.process_time()
     print(f"\nFound {len(pairs)} pairs with hamming distance of 1 in {end-start:.2f}s\n")
     if pairs:
