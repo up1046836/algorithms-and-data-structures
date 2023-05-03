@@ -37,7 +37,7 @@ def find_candidates(code):
 
 def find_pairs(codes):
     hash_table = HashTable(codes)
-    pairs = []
+    pairs = set()
     for code in codes:
         candidates = find_candidates(code.code)
         for candidate in candidates:
@@ -45,7 +45,7 @@ def find_pairs(codes):
             if found:
                 pair = Pair(code, found)
                 if pair not in pairs:
-                    pairs.append(pair)
+                    pairs.add(pair)
     return pairs
 
 if __name__ == "__main__":

@@ -5,11 +5,13 @@ import time
 
 YELLOW = "\033[1;33m"
 NORMAL = "\033[0m"
+TIMEOUT = 10
 
 def hamming_distance(code1, code2):
     return sum([char1 != char2 for char1, char2 in zip(code1, code2)])
 
 def find_pairs(codes):
+    start = time.process_time()
     pairs = []
     for i, code in enumerate(codes):
         for j in range(i, len(codes)):
@@ -19,6 +21,8 @@ def find_pairs(codes):
                 if new_pair not in pairs:
                     pairs.append(new_pair)
         end = time.process_time()
+        if end - start > TIMEOUT:
+            return None
     return pairs
 
 if __name__ == "__main__":

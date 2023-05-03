@@ -3,6 +3,7 @@ import string
 from code import Code
 import sys
 from find_pairs import find_pairs, find_candidates
+import os
 
 random.seed(1046836)
 letters = string.ascii_uppercase[:11]
@@ -33,6 +34,11 @@ def generate_codes(n):
     while len(codes) < n:
         codes.add(generate_random_code())
 
+    if n == 100000:
+        codes = [Code(code) for code in codes]
+        pairs = find_pairs(codes)
+        return (len(pairs), codes)
+
     for _ in range(k):
         code = random.choice(list(codes))
         new_code = generate_pair_code(code)
@@ -49,7 +55,7 @@ def generate_codes(n):
 
 def generate_file(n):
     k, codes = generate_codes(n)
-    file = f'inputs/{n}_codes_{k if k else "random"}_pairs.input'
+    file = os.path.dirname(__file__) + f'/../inputs/{n}_codes_{k}_pairs.input'
     with open(file, 'w') as f:
         for code in codes:
             f.write(code.code + '\n')

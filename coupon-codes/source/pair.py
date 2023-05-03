@@ -29,3 +29,9 @@ class Pair():
 
     def __repr__(self):
         return self.__str__()
+
+    def __hash__(self):
+        if self.a.code < self.b.code:
+            return hash(self.a.code + self.b.code)
+        else:
+            return hash(self.b.code + self.a.code)
