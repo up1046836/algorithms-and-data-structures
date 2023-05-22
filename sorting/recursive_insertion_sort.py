@@ -7,8 +7,11 @@ def insert(lst, j):
 
     lst[i + 1] = elem
 
-def recursive_insertion_sort(lst, j):
+def _recursive_insertion_sort(lst, j):
     if j > 0:
-        recursive_insertion_sort(lst, j-1)
+        _recursive_insertion_sort(lst, j-1)
         insert(lst, j)
     return lst
+
+def recursive_insertion_sort(lst):
+    return _recursive_insertion_sort(lst, len(lst)-1)

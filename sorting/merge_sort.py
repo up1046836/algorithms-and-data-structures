@@ -14,10 +14,13 @@ def merge(lst, p, q, r):
             lst[k] = right[j]
             j = j + 1
 
-def merge_sort(lst, p, r):
+def _merge_sort(lst, p, r):
     q = (p + r)//2
     if p < r:
-        merge_sort(lst, p, q)
-        merge_sort(lst, q + 1, r)
+        _merge_sort(lst, p, q)
+        _merge_sort(lst, q + 1, r)
         merge(lst, p, q, r)
     return lst
+
+def merge_sort(lst):
+    return _merge_sort(lst, 0, len(lst)-1)
