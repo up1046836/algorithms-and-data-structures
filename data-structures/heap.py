@@ -1,16 +1,14 @@
 class Heap:
     """
-    Dynamic array (list) implementation of heap with
-    constant time searching using hash table (dictionary)
+    Dynamic array (list) implementation of heap with locators
     
-    Heap only keeps the last entry of equal elements
+    Only keeps the last entry of equal elements
 
-    insert: remove + O(logn)
-    remove: search + O(logn)
+    insert: remove + O(logn) = O(logn)
+    remove: search + O(logn) = O(logn)
     search: O(1)
 
-    Compare must be implemented by subclass and returns 
-    True if comparison rule is satisfied
+    Compare must be implemented when subclassed
     """
 
     def __init__(self):
